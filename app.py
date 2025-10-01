@@ -1,8 +1,5 @@
 import streamlit as st
 
-
-
-
 st.set_page_config(
     page_title="My App",
     page_icon="https://chiper.cl/wp-content/uploads/2023/06/cropped-favicon-192x192.png",
