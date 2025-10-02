@@ -1,15 +1,33 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from utils import auth
 
 st.set_page_config(page_title="Demo Dashboard", layout="wide")
 
+try:
+    token = auth.ensure_authenticated(show_controls_in_sidebar=True, debug=False)
+except ValueError:
+    st.stop()  # el usuario no se autenticó; detenemos la app
+
+
+st.sidebar.markdown(
+    """
+    <div style="text-align:center; margin-bottom:20px;">
+        <a href="https://yourwebsite.com" target="_blank">
+            <img src="https://chiper.cl/wp-content/uploads/2023/09/logo-chiper-1.svg" width="120">
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+st.title("Catálogo – API Local")
 # -------- Filtros
-with st.sidebar:
-    st.header("Filtros")
-    fecha = st.date_input("Fecha")
-    cat = st.selectbox("Categoría", ["Todas","A","B","C"])
-    top_n = st.slider("Top N", 5, 50, 10)
+
+st.header("Filtros")
+fecha = st.date_input("Fecha")
+cat = st.selectbox("Categoría", ["Todas","A","B","C"])
+top_n = st.slider("Top N", 5, 50, 10)
 
 # -------- Datos de ejemplo
 np.random.seed(0)

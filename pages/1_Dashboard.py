@@ -1,6 +1,15 @@
+from utils import auth
+
 import streamlit as st
 import pandas as pd
 import numpy as np
+
+
+try:
+    token = auth.ensure_authenticated(show_controls_in_sidebar=True, debug=False)
+except ValueError:
+    st.stop()  # el usuario no se autenticó; detenemos la app
+
 st.sidebar.markdown(
     """
     <div style="text-align:center; margin-bottom:20px;">

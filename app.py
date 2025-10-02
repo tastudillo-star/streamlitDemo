@@ -1,4 +1,10 @@
 import streamlit as st
+from utils import auth
+
+# Nota: `st.cache` está deprecado. Usar `st.cache_data` o `st.cache_resource`.
+# Este proyecto ya usa la nueva API (por ejemplo, @st.cache_data en pages/2_API_Local.py),
+# por lo que no hacemos monkeypatch ni suprimimos warnings: preferimos migrar decoradores
+# explícitamente a `st.cache_data`/`st.cache_resource` cuando sea necesario.
 
 st.set_page_config(
     page_title="My App",
@@ -6,6 +12,12 @@ st.set_page_config(
     layout="wide",
 initial_sidebar_state="expanded"
 )
+
+try:
+    token = auth.ensure_authenticated(show_controls_in_sidebar=True, debug=False)
+except ValueError:
+    st.stop()  # el usuario no se autenticó; detenemos la app
+
 
 st.sidebar.markdown(
     """
