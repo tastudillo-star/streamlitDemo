@@ -24,6 +24,19 @@ st.sidebar.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    /* Cambiar ancho de la sidebar */
+    [data-testid="stSidebar"] {
+        width: 100px; /* ancho deseado */
+        min-width: 100px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title("BI & Modelos – Pricing")
 st.write(
     "Usa el panel izquierdo para navegar entre páginas. "

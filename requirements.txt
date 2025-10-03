@@ -4,3 +4,7 @@ numpy
 requests
 python-dotenv
 streamlit-cookies-controller
+streamlit-aggrid
+streamlit
+pandas
+numpy
