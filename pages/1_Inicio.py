@@ -1,12 +1,10 @@
 from utils import auth
-
 import streamlit as st
 import pandas as pd
 import numpy as np
 
-
 try:
-    token = auth.ensure_authenticated(show_controls_in_sidebar=True, debug=False)
+    token = auth.ensure_authenticated(show_controls_in_sidebar=True)
 except ValueError:
     st.stop()  # el usuario no se autenticó; detenemos la app
 
@@ -20,6 +18,7 @@ st.sidebar.markdown(
     """,
     unsafe_allow_html=True
 )
+
 st.title("Dashboard")
 
 # Data de ejemplo
